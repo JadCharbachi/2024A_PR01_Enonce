@@ -126,7 +126,13 @@ class Game:
     def check_collision(self, direction):
         pass
         # TODO: Extraire les coordonnées de déplacement de la direction (dx, dy)
-
+        dx, dy = direction
+        new_x = self.pacman.x + dx
+        new_y = self.pacman.y + dy
+        if 0 <= new_x < len(self.board[0]) and 0 <= new_y < len(self.board):
+            return self.board[new_y][new_x] == 0
+        
+        return False
         # TODO: Calculer la nouvelle position de Pac-Man après le déplacement (new_x, new_y) avec la formule new_x = self.pacman.x + dx
     
         # TODO: Vérifier si la nouvelle position est un chemin valide ou un mur
@@ -149,6 +155,9 @@ class Game:
 
     def check_score(self):
         # TODO: Vérifier si la position actuelle de Pac-Man (en coordonnées de grille) correspond à une position de pièce en utilisant (self.pacman.x, self.pacman.y)
+        if (self.pacman.x, self.pacman.y) in self.coins:
+            self.coins.remove((self.pacman.x, self.pacman.y))
+            self.score += 10
             # TODO: Si Pac-Man est sur une pièce, la retirer de la liste des pièces restantes à collecter 
 
             # TODO: Ajouter des points au score du joueur pour la pièce collectée (par exemple, 10 points)
@@ -159,9 +168,11 @@ class Game:
             self.game_over = True
 
     def check_special_coins(self):
-        pass
         # TODO: Vérifier si la position actuelle de Pac-Man (en coordonnées de grille) correspond à une position de pièce spéciale
-
+        if (self.pacman.x, self.pacman.y) in self.special_coins:
+            self.special_coins.remove((self.pacman.x, self.pacman.y))
+            self.score += 20
+            self.activate_eat_mode()
             # TODO: Si Pac-Man est sur une pièce spéciale, retirer cette pièce spéciale de la liste
             
             # TODO: Ajouter des points au score du joueur pour la pièce spéciale collectée
