@@ -42,10 +42,19 @@ class PacMan:
 
     def move(self):
         if self.direction:
-            pass
+            dx, dy = self.direction
+            new_x = self.x + dx
+            new_y = self.y + dy
+            if self.board[new_y][new_x] == 0:
+                self.x = new_x
+                self.y = new_y
+                screen_x = self.x * self.size_grid
+                screen_y = self.y * self.size_grid
+                self.rect.topleft = (screen_x, screen_y)
+
         
             # TODO: Extraire la direction de déplacement à partir de l'attribut `self.direction`.
-            
+        
             # TODO: Calculer les nouvelles coordonnées X et Y en fonction de la direction
             # Ajouter la direction à la position actuelle (self.x, self.y) pour obtenir la nouvelle position.
 
@@ -61,7 +70,7 @@ class PacMan:
                 # Mettre à jour `self.rect.topleft` avec la nouvelle position à l'écran pour déplacer l'affichage de Pac-Man.
 
     def set_direction(self, direction):
-        self.direction = direction
+        self.direction = direction 
 
     def stop(self):
         self.direction = None

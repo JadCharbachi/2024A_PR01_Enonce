@@ -95,18 +95,30 @@ class Game:
     def handle_keypress(self, event):
         pass
         # TODO: Vérifiez si la touche pressée est la flèche droite avec event.key == pygame.K_RIGHT
+        if event.key == pygame.K_RIGHT:
+            if self.check_collision((1, 0)):
+                self.pacman.set_direction((1, 0))
             # TODO: Vérifiez si Pac-Man peut se déplacer à droite sans entrer en collision avec self.check_collision((1, 0))
                 # TODO: Si le déplacement est possible, définissez la nouvelle direction de Pac-Man vers la droite avec self.pacman.set_direction((1, 0))
 
         # TODO: Vérifiez si la touche pressée est la flèche gauche
+        if event.key == pygame.K_LEFT:
+            if self.check_collision((-1, 0)): 
+                self.pacman.set_direction((-1, 0))
             # TODO: Vérifiez si Pac-Man peut se déplacer à gauche sans entrer en collision
                 # TODO: Si le déplacement est possible, définissez la nouvelle direction de Pac-Man vers la gauche
 
         # TODO: Vérifiez si la touche pressée est la flèche vers le haut
+        if event.key == pygame.K_UP:
+            if self.check_collision((0, -1)):
+                self.pacman.set_direction((0, -1))
             # TODO: Vérifiez si Pac-Man peut se déplacer vers le haut sans entrer en collision
                 # TODO: Si le déplacement est possible, définissez la nouvelle direction de Pac-Man vers le haut
 
         # TODO: Vérifiez si la touche pressée est la flèche vers le bas
+        if event.key == pygame.K_DOWN:
+            if self.check_collision((0, 1)):
+                self.pacman.set_direction((0, 1))
             # TODO: Vérifiez si Pac-Man peut se déplacer vers le bas sans entrer en collision
                 # TODO: Si le déplacement est possible, définissez la nouvelle direction de Pac-Man vers le bas
                 
